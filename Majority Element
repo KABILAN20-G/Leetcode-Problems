@@ -22,3 +22,31 @@ class Solution {
 
     }
 }
+
+
+//
+
+
+class Solution {
+    public int majorityElement(int[] nums) {
+        int n = nums.length;
+        int maj = nums[0], count = 1;
+
+        for (int i = 1; i < n; i++) {
+            if (nums[i] == maj) count++;
+            else count--;
+
+            if (count == 0) {
+                maj = nums[i];  // update candidate properly
+                count = 1;
+            }
+        }
+
+        // Verify candidate (in case no majority exists)
+        int freq = 0;
+        for (int num : nums) {
+            if (num == maj) freq++;
+        }
+        return (freq > n/2) ? maj : -1;
+    }
+}
